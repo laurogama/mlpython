@@ -1,12 +1,15 @@
 import sys
+
 import matplotlib
+
+
 matplotlib.use('Qt4Agg')
 import psycopg2
 import pandas as pd
 import matplotlib.pylab as plt
-import matplotlib.rcsetup as rcsetup
+# import matplotlib.rcsetup as rcsetup
 
-print(rcsetup.all_backends)
+# print(rcsetup.all_backends)
 plt.matplotlib.matplotlib_fname()
 
 
@@ -61,5 +64,27 @@ def plotting():
     # plt.savefig('../output/EU1.png', bbox_inches='tight')
 
 
+def satellite(country):
+    df = pd.read_excel("../datasets/UCS_Satellite_Database_8-1-14.xls", 0)
+    unique_countries = df['Country of Operator/Owner'].unique()
+
+    a = 0
+    for x in unique_countries:
+        if country in x:
+            a = a + 1
+            print x
+    print(a)
+
+
+def group_country():
+    df = pd.read_excel("../datasets/UCS_Satellite_Database_8-1-14.xls", 'Sheet1', index_col=None)
+    # gb = df['Country of Operator/Owner', 'Date of Launch']
+    # plt.plot(gb.groupby('Country of Operator/Owner'))
+    # plt.show()
+    print(df.head())
+
+
 if __name__ == "__main__":
-    plotting()
+    # plotting()
+    group_country()
+    # satellite("USA")
