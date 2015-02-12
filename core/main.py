@@ -84,7 +84,22 @@ def group_country():
     print(df.head())
 
 
+def consume_wallmart_data():
+    df = pd.read_csv("../datasets/kaggle/wallmart/features.csv", na_values=['NaN'])
+    print(df.head())
+    print (df.columns)
+    # fig, axes = plt.subplots(nrows=12, ncols=1)
+    # data = pd.Series(df['Date'])
+    # print(data)
+    df.plot(kind='bar')
+    plt.show()
+    # for i, c in enumerate(df.columns):
+    # df[c].plot(kind='line', ax=axes[i], figsize=(12, 10), title=c)
+    # plt.show()
+
+
 if __name__ == "__main__":
     # plotting()
-    group_country()
+    # group_country()
+    consume_wallmart_data()
     # satellite("USA")
