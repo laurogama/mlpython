@@ -1,15 +1,14 @@
 import matplotlib
 from matplotlib import rcsetup
+matplotlib.use('Qt4Agg')
 from sklearn import metrics
 from sklearn.cross_validation import train_test_split
 from sklearn.datasets import load_iris
 from sklearn.neighbors import KNeighborsClassifier
-
-matplotlib.use('Qt4Agg')
+import seaborn as sns
 import matplotlib.pyplot as plt
-
-print plt.matplotlib.matplotlib_fname()
-print(rcsetup.all_backends)
+# print plt.matplotlib.matplotlib_fname()
+# print(rcsetup.all_backends)
 __author__ = 'laurogama'
 
 
@@ -18,7 +17,7 @@ def train_iris_dataset():
 
     X = iris.data
     y = iris.target
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=1)
     # log_reg = LogisticRegression()
     k_range = range(1, 26)
     scores = []
@@ -34,6 +33,7 @@ def train_iris_dataset():
     plt.show()
 
 
+
 def classifier_score(classifier, X_train, y_train, X_test, y_test):
     classifier.fit(X_train, y_train)
     y_pred = classifier.predict(X_test)
@@ -42,5 +42,13 @@ def classifier_score(classifier, X_train, y_train, X_test, y_test):
     return y_score
 
 
+def show_seaborn():
+    df = sns.load_dataset('iris')
+    sns.pairplot(df, hue='species', size=2.5)
+    sns.plt.show()
+
+
+
 if __name__ == "__main__":
     train_iris_dataset()
+    show_seaborn()
